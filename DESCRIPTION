@@ -1,0 +1,13 @@
+Package: ahrf
+Title: Area Health Resources Files (AHRF)
+Version: 0.0.0.9000
+Authors@R: 'JJ Chen <jiajia.chern@gmail.com> [aut, cre]'
+Description: County-level and state-level Area Health Resources Files (AHRF) as an R data package.
+Depends:
+    R (>= 3.3.0)
+License: CC0
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/jjchern/ahrf
+BugReports: https://github.com/jjchern/ahrf/issues
+RoxygenNote: 5.0.1
