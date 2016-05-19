@@ -27,9 +27,68 @@ The size of `ahrf_county.rda` is 16.7M, so it might take a while to install and 
 
 ```R
 # install.packages("devtools")
-devtools::install_github("jjchern/hospitals")
+devtools::install_github("jjchern/ahrf")
 
 # To uninstall the package, use:
-# remove.packages("hospitals")
+# remove.packages("ahrf")
 ```
+
+# Usage
+
+## There're 3230 rows and 6963 columns in the county file (wide format)
+
+```{r, cache=TRUE, message=FALSE, warning=FALSE}
+library(dplyr, warn.conflicts = FALSE)
+dim(ahrf::ahrf_county)
+```
+
+## County-level hospital beds in 2012
+
+```{r, message=FALSE, warning=FALSE, cache=TRUE}
+ahrf::ahrf_county %>% 
+        select(county = F04437, 
+               fips = F00002, 
+               beds_2012 = F0892112,
+               pop_2012 = F1198412) %>% 
+        mutate(beds_2012 = as.integer(beds_2012),
+               pop_2012 = as.integer(pop_2012),
+               beds_2012_p10k = beds_2012 / pop_2012 * 10000) -> beds
+beds
+summary(beds$beds_2012)
+summary(beds$pop_2012)
+summary(beds$beds_2012_p10k)
+quantile(beds$beds_2012_p10k, na.rm = TRUE)
+```
+
+## Geographic distribution of hospital beds in 2012
+
+```{r bed-map, cache=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+beds$beds_2012_dist = Hmisc::cut2(beds$beds_2012_p10k, cuts = c(7.63, 20.50, 38.09))
+
+# devtools::install_github("jjchern/usmapdata")
+usmapdata::county %>% 
+  left_join(beds, by = c("id" = "fips")) %>% 
+        mutate(region = id) -> beds_map
+
+usmapdata::state %>% 
+        mutate(region = id) -> state_map
+
+library(ggplot2)
+ggplot() +
+  geom_map(data = beds_map, map = beds_map,
+           aes(x = long, y = lat, map_id = id, fill = beds_2012_dist),
+           colour = alpha("white", 0.1), size=0.2) +
+  geom_map(data = state_map, map = state_map,
+           aes(x = long, y = lat, map_id = region),
+           colour = "white", fill = "NA") +
+  coord_map("albers", lat0 = 30, lat1 = 40) +
+  viridis::scale_fill_viridis(discrete=TRUE, option = "D") +
+  ggtitle("Hospital Beds per 10,000 Population in 2012") +
+  ggthemes::theme_map() +
+  theme(legend.position = c(.85, .3),
+        legend.title=element_blank())
+```
+
+
+
 
