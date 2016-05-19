@@ -3,6 +3,8 @@
 About
 =====
 
+[![Travis-CI Build Status](https://travis-ci.org/jjchern/ahrf.svg?branch=master)](https://travis-ci.org/jjchern/ahrf)
+
 This repo contains R scripts (in the [`data-raw` folder](https://github.com/jjchern/ahrf/tree/master/data-raw)) that download county-level and state-level [Area Health Resources Files (AHRF)](http://ahrf.hrsa.gov/download.htm). The datasets are stored in the [`data` folder](https://github.com/jjchern/ahrf/tree/master/data).
 
 AHRF is issued annually. The most recent release is in 2015 (as of May 5, 2016).
