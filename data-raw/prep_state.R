@@ -5,7 +5,7 @@ library(readr)
 
 # Download raw files ------------------------------------------------------
 
-url = "http://datawarehouse.hrsa.gov/DataDownload/ARF/AHRF_SN_2014-2015.zip"
+url = "https://datawarehouse.hrsa.gov/DataDownload/AHRF/AHRF_SN_2015-2016.zip"
 fil_zip = tempfile(fileext = ".zip")
 
 if (!file.exists("state/AHRFSN2015.sas")) {
@@ -15,8 +15,8 @@ if (!file.exists("state/AHRFSN2015.sas")) {
 }
 list.files("state")
 
-raw_src = "state/AHRFSN2015.asc" # Raw data
-dic_src = "state/AHRFSN2015.sas" # SAS dictionary file
+raw_src = "state/AHRFSN2016.asc" # Raw data
+dic_src = "state/AHRFSN2016.sas" # SAS dictionary file
 
 # Explore file layouts -----------------------------------------------------
 
@@ -83,5 +83,5 @@ read_fwf(
 ahrf_state
 
 # Save it! ----------------------------------------------------------------
-devtools::use_data(ahrf_state_layout)
-devtools::use_data(ahrf_state)
+devtools::use_data(ahrf_state_layout, overwrite=TRUE)
+devtools::use_data(ahrf_state, overwrite=TRUE)
