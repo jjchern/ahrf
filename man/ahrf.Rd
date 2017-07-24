@@ -4,7 +4,21 @@
 \name{ahrf}
 \alias{ahrf}
 \alias{ahrf-package}
+\alias{ahrf-package}
 \title{ahrf.}
 \description{
 ahrf.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jjchern/ahrf}
+  \item Report bugs at \url{https://github.com/jjchern/ahrf/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: JJ Chen \email{jiajia.chern@gmail.com}
+
+}
+\keyword{internal}

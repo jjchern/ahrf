@@ -8,24 +8,31 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "README-",
+  message = FALSE, 
+  warning = FALSE,
+  cache = TRUE
 )
 ```
 
 # About
 
 [![Travis-CI Build Status](https://travis-ci.org/jjchern/ahrf.svg?branch=master)](https://travis-ci.org/jjchern/ahrf)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jjchern/ahrf?branch=master&svg=true)](https://ci.appveyor.com/project/jjchern/ahrf)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ahrf)](https://cran.r-project.org/package=ahrf)
 
 This repo contains R scripts (in the [`data-raw` folder](https://github.com/jjchern/ahrf/tree/master/data-raw)) that download county-level and state-level 
 [Area Health Resources Files (AHRF)](http://ahrf.hrsa.gov/download.htm). The datasets are stored in the [`data` folder](https://github.com/jjchern/ahrf/tree/master/data). 
 
 AHRF is issued annually. 
-The most recent release is in 2015 (as of May 5, 2016).
+The most recent release is in 2016 (as of July 24, 2017).
+
+For more information on the AHRF files, see [https://datawarehouse.hrsa.gov/topics/ahrf.aspx](https://datawarehouse.hrsa.gov/topics/ahrf.aspx).
 
 # Installation
 
 You can also download the datasets as an R package.
-The size of `ahrf_county.rda` is 16.7M, so it might take a while to install and load into memory.
+The size of `ahrf_county.rda` is 17.5M, so it might take a while to install and load into memory.
 
 ```R
 # install.packages("devtools")
@@ -37,35 +44,51 @@ devtools::install_github("jjchern/ahrf")
 
 # Usage
 
-## There're 3230 rows and 6963 columns in the county file (wide format)
+## Load the state file
 
-```{r, cache=TRUE, message=FALSE, warning=FALSE}
-library(dplyr, warn.conflicts = FALSE)
+```{r}
+library(tidyverse)
+ahrf::ahrf_state
+```
+
+## There're 3230 rows and 6921 columns in the county file (wide format)
+
+```{r}
 dim(ahrf::ahrf_county)
 ```
 
-## County-level hospital beds in 2012
+## Variable labels are included
 
-```{r, message=FALSE, warning=FALSE, cache=TRUE}
+```{r}
+library(labelled)
+ahrf::ahrf_county %>% 
+        select(F04437, F00002, contains("F08921"), contains("F11984")) %>% 
+        var_label() %>% 
+        enframe() %>% 
+        unnest()
+```
+
+## County-level hospital beds in 2013
+
+```{r}
 ahrf::ahrf_county %>% 
         select(county = F04437, 
                fips = F00002, 
-               beds_2012 = F0892112,
-               pop_2012 = F1198412) %>% 
-        mutate(beds_2012 = as.integer(beds_2012),
-               pop_2012 = as.integer(pop_2012),
-               beds_2012_p10k = beds_2012 / pop_2012 * 10000) -> beds
+               beds_2013 = `F08921-13`,
+               pop_2013 = `F11984-13`) %>% 
+        mutate(beds_2013 = as.integer(beds_2013),
+               pop_2013 = as.integer(pop_2013),
+               beds_2013_p10k = beds_2013 / pop_2013 * 10000) -> beds
 beds
-summary(beds$beds_2012)
-summary(beds$pop_2012)
-summary(beds$beds_2012_p10k)
-quantile(beds$beds_2012_p10k, na.rm = TRUE)
+
+lapply(beds, summary)
 ```
 
-## Geographic distribution of hospital beds in 2012
+## Geographic distribution of hospital beds in 2013
 
-```{r bed-map, cache=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
-beds$beds_2012_dist = Hmisc::cut2(beds$beds_2012_p10k, cuts = c(7.63, 20.50, 38.09))
+```{r bed-map, echo=FALSE}
+beds$beds_2013_dist = Hmisc::cut2(beds$beds_2013_p10k, 
+                                  cuts = c(7.39, 20.13, 37.27))
 
 # devtools::install_github("jjchern/usmapdata")
 usmapdata::county %>% 
@@ -75,22 +98,18 @@ usmapdata::county %>%
 usmapdata::state %>% 
         mutate(region = id) -> state_map
 
-library(ggplot2)
 ggplot() +
   geom_map(data = beds_map, map = beds_map,
-           aes(x = long, y = lat, map_id = id, fill = beds_2012_dist),
-           colour = alpha("white", 0.1), size=0.2) +
+           aes(x = long, y = lat, map_id = id, fill = beds_2013_dist),
+           colour = alpha("white", 0.1), size = 0.2) +
   geom_map(data = state_map, map = state_map,
            aes(x = long, y = lat, map_id = region),
            colour = "white", fill = "NA") +
   coord_map("albers", lat0 = 30, lat1 = 40) +
-  viridis::scale_fill_viridis(discrete=TRUE, option = "D") +
-  ggtitle("Hospital Beds per 10,000 Population in 2012") +
+  viridis::scale_fill_viridis(discrete = TRUE, option = "D") +
+  ggtitle("Hospital Beds per 10,000 Population in 2013") +
   ggthemes::theme_map() +
   theme(legend.position = c(.85, .3),
-        legend.title=element_blank())
+        legend.title = element_blank(),
+        plot.title = element_text(hjust = 0.5))
 ```
-
-
-
-

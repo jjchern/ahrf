@@ -2,4 +2,5 @@
 #'
 #' @name ahrf
 #' @docType package
-NULL
+#' @keywords internal
+"_PACKAGE"
