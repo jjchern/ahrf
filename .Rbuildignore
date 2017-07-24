@@ -7,3 +7,4 @@
 ^appveyor\.yml$
 ^README_cache
 ^cran-comments\.md$
+^docs$
