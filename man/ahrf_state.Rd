@@ -5,11 +5,13 @@
 \alias{ahrf_state}
 \title{AHRF State Data}
 \format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 52 rows and 1122 columns.}
+\source{
+\url{https://datawarehouse.hrsa.gov/topics/ahrf.aspx}
+}
 \usage{
 ahrf_state
 }
 \description{
-AHRF State Data
+Contains state-level data from the Area Health Resources Files.
 }
 \keyword{datasets}
-

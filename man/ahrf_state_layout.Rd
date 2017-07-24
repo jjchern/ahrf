@@ -4,12 +4,14 @@
 \name{ahrf_state_layout}
 \alias{ahrf_state_layout}
 \title{AHRF State Data Layout}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1122 rows and 6 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1122 rows and 8 columns.}
+\source{
+\url{https://datawarehouse.hrsa.gov/topics/ahrf.aspx}
+}
 \usage{
 ahrf_state_layout
 }
 \description{
-AHRF State Data Layout
+Contains the layout file for the AHRF State Data.
 }
 \keyword{datasets}
-
