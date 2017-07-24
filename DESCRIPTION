@@ -1,8 +1,13 @@
 Package: ahrf
 Title: Area Health Resources Files (AHRF)
-Version: 0.0.0.9000
-Authors@R: 'JJ Chen <jiajia.chern@gmail.com> [aut, cre]'
-Description: County-level and state-level Area Health Resources Files (AHRF) as an R data package.
+Version: 0.0.1
+Authors@R: person("JJ", "Chen", , "jiajia.chern@gmail.com", c("aut", "cre"))
+Description: Contains county-level and state-level data from the Area Health 
+        Resources Files (AHRF) <https://datawarehouse.hrsa.gov/topics/ahrf.aspx>, 
+        which include various measures in eight broad areas: Health Care 
+        Professions, Health Facilities, Population Characteristics, Economics, 
+        Health Professions Training, Hospital Utilization, Hospital Expenditures, 
+        and Environment.
 Depends:
     R (>= 3.2.0)
 License: CC0
@@ -10,4 +15,4 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/jjchern/ahrf
 BugReports: https://github.com/jjchern/ahrf/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1.9000
