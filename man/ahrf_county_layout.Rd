@@ -4,12 +4,14 @@
 \name{ahrf_county_layout}
 \alias{ahrf_county_layout}
 \title{AHRF County Data Layout}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 6963 rows and 6 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 6921 rows and 8 columns.}
+\source{
+\url{https://datawarehouse.hrsa.gov/topics/ahrf.aspx}
+}
 \usage{
 ahrf_county_layout
 }
 \description{
-AHRF County Data Layout
+Contains the layout file for the AHRF County Data.
 }
 \keyword{datasets}
-

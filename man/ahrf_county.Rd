@@ -4,12 +4,14 @@
 \name{ahrf_county}
 \alias{ahrf_county}
 \title{AHRF County Data}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3230 rows and 6963 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3230 rows and 6921 columns.}
+\source{
+\url{https://datawarehouse.hrsa.gov/topics/ahrf.aspx}
+}
 \usage{
 ahrf_county
 }
 \description{
-AHRF County Data
+Contains county-level data from the Area Health Resources Files.
 }
 \keyword{datasets}
-
