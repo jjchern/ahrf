@@ -160,18 +160,13 @@ lapply(beds, summary)
 #> 
 #> $beds_2013
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-#>     0.0    17.0    50.0   294.6   181.5 25310.0       7 
+#>     0.0    17.0    50.0   294.6   181.5 25311.0       7 
 #> 
 #> $pop_2013
 #>     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
-#>       90    11240    26130    99290    66660 10020000        8 
+#>       90    11236    26134    99287    66665 10017068        8 
 #> 
 #> $beds_2013_p10k
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-#>   0.000   7.391  20.130  30.670  37.270 781.800      13
+#>   0.000   7.391  20.128  30.673  37.272 781.810      13
 ```
-
-Geographic distribution of hospital beds in 2012
-------------------------------------------------
-
-![](README-bed-map-1.png)
