@@ -5,6 +5,8 @@ library(stringr)
 library(readr)
 
 url = "http://datawarehouse.hrsa.gov/DataDownload/ARF/AHRF_2014-2015.zip"
+url = "https://datawarehouse.hrsa.gov/DataDownload/AHRF/AHRF_2015-2016.ZIP"
+
 fil_zip = tempfile(fileext = ".zip")
 
 if(!file.exists("county/ahrf2015.asc")) {
@@ -14,8 +16,8 @@ if(!file.exists("county/ahrf2015.asc")) {
 }
 list.files("county")
 
-raw_src = "county/ahrf2015.asc" # Raw data
-dic_src = "county/AHRF2015.sas" # SAS dictionary file
+raw_src = "county/ahrf2016.asc" # Raw data
+dic_src = "county/ahrf2015-16.sas" # SAS dictionary file
 
 # Prepare layout file -----------------------------------------------------
 
@@ -80,5 +82,5 @@ ahrf_county
 # ahrf_county
 
 # Save it! ----------------------------------------------------------------
-devtools::use_data(ahrf_county_layout)
-devtools::use_data(ahrf_county)
+devtools::use_data(ahrf_county_layout, overwrite=TRUE)
+devtools::use_data(ahrf_county, overwrite=TRUE)
