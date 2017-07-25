@@ -6,12 +6,12 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 2 notes
 
-> installed size is 24.7Mb 
-> sub-directories of 1Mb or more: data 24.6Mb
+1. This is a new release.
 
-* This is a new release.
+2. Installed size is 24.7Mb; sub-directories of 1Mb or more: data 24.6Mb.
+
 * Data will not be updated frequently and it has been optimally compressed.
 
 ## Reverse dependencies
