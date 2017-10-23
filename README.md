@@ -3,7 +3,7 @@
 About
 =====
 
-[![Travis-CI Build Status](https://travis-ci.org/jjchern/ahrf.svg?branch=master)](https://travis-ci.org/jjchern/ahrf) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jjchern/ahrf?branch=master&svg=true)](https://ci.appveyor.com/project/jjchern/ahrf) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ahrf)](https://cran.r-project.org/package=ahrf)
+[![Travis-CI Build Status](https://travis-ci.org/jjchern/ahrf.svg?branch=master)](https://travis-ci.org/jjchern/ahrf) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jjchern/ahrf?branch=master&svg=true)](https://ci.appveyor.com/project/jjchern/ahrf)
 
 This repo contains R scripts (in the [`data-raw` folder](https://github.com/jjchern/ahrf/tree/master/data-raw)) that download county-level and state-level [Area Health Resources Files (AHRF)](http://ahrf.hrsa.gov/download.htm). The datasets are stored in the [`data` folder](https://github.com/jjchern/ahrf/tree/master/data).
 
@@ -18,7 +18,7 @@ You can also download the datasets as an R package. The size of `ahrf_county.rda
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jjchern/ahrf")
+devtools::install_github("jjchern/ahrf@v0.0.1")
 
 # To uninstall the package, use:
 # remove.packages("ahrf")
